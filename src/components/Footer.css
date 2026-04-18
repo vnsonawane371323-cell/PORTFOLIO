@@ -1,0 +1,48 @@
+.footer {
+  border-top: 1px solid rgba(0,245,160,0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copy { color: #6b7a99; font-size: 0.8rem; }
+
+.footer-badge {
+  font-size: 0.78rem;
+  color: #00f5a0;
+  background: rgba(0,245,160,0.06);
+  border: 1px solid rgba(0,245,160,0.15);
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+}
+
+.back-top {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #6b7a99;
+  padding: 0.4rem 1.1rem;
+  border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  transition: all 0.3s;
+  cursor: none;
+}
+
+.back-top:hover {
+  border-color: #00f5a0;
+  color: #00f5a0;
+}
+
+@media (max-width: 600px) {
+  .footer-inner { justify-content: center; text-align: center; }
+}

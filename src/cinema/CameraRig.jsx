@@ -18,9 +18,9 @@ export default function CameraRig() {
   }, [])
   
   const keyframes = [
-    { progress: 0.0, pos: [0, 0, 800], lookAt: [0, 0, 0] },
-    { progress: 0.1, pos: [30, 20, 600], lookAt: [0, 0, 0] },
-    { progress: 0.2, pos: [0, 0, 150], lookAt: [0, 0, 0] },
+    { progress: 0.0, pos: [0, 40, 200], lookAt: [0, 0, 0] },
+    { progress: 0.1, pos: [20, -10, 100], lookAt: [0, 0, 0] },
+    { progress: 0.2, pos: [5, 5, 40], lookAt: [0, 0, 0] },
     { progress: 0.4, pos: [12, 4, 25], lookAt: [4, 2, 8] },
     { progress: 0.55, pos: [7, 4, 14], lookAt: [6, 3.4, 9.2] },
     { progress: 0.80, pos: [0, 5, 55], lookAt: [0, 0, 0] },

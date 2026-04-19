@@ -247,9 +247,15 @@
   padding-top: 1.8rem;
   border-top: 1px solid rgba(255,255,255,0.06);
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
-.h-stat {}
+.h-stat {
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .h-stat-num {
   font-family: 'Syne', sans-serif;
   font-size: 1.9rem;
@@ -274,6 +280,10 @@
   gap: 0.6rem;
   cursor: none;
   z-index: 2;
+}
+
+@media (max-height: 850px) {
+  .scroll-hint { position: relative; bottom: auto; left: auto; transform: none; margin-top: 4rem; }
 }
 
 .scroll-hint span {

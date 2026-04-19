@@ -125,7 +125,7 @@ export default function Hero() {
           <motion.div className="hero-stats" {...fadeUp(1.1)}>
             {[
               { num: '🏆', label: 'National Runner-Up', sub: 'Hacksagon 2026' },
-              { num: '2+', label: 'Live Projects' },
+              { num: '4+', label: 'Live Projects' },
               { num: '17', label: 'Master Student', sub: 'ISTE 2025' },
               { num: '3rd', label: 'Year · KK Wagh' },
             ].map((s, i) => (

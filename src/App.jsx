@@ -15,6 +15,8 @@ import Experience from './components/sections/Experience'
 import Achievements from './components/sections/Achievements'
 import Certifications from './components/sections/Certifications'
 import Contact from './components/sections/Contact'
+import Hero from './components/sections/Hero'
+import ParticleField from './canvas/ParticleField'
 
 const ScrollStory = lazy(() => import('./cinema/ScrollStory'))
 
@@ -50,12 +52,15 @@ export default function App() {
 
       {!loading && (
         <ErrorBoundary>
-          <Suspense fallback={<div style={{background:'#050810',height:'100vh'}}/>}>
+          <Suspense fallback={<div style={{background:'#000000',height:'100vh'}}/>}>
             <Navbar />
             <StoryProgress />
             <ScrollStory />
             
-            <main style={{ position: 'relative', zIndex: 1, background: '#050810' }}>
+            <main style={{ position: 'relative', zIndex: 1, background: 'transparent' }}>
+              <ParticleField />
+              <Hero />
+              <Divider />
               <About />
               <Divider />
               <Skills />

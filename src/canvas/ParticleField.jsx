@@ -8,7 +8,7 @@ export default function ParticleField() {
     const ctx = canvas.getContext('2d')
     let animId
     let particles = []
-    let mouse = { x: 0, y: 0 }
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
 
     const resize = () => {
       canvas.width = window.innerWidth
@@ -18,16 +18,26 @@ export default function ParticleField() {
 
     const init = () => {
       particles = []
-      const count = Math.floor((canvas.width * canvas.height) / 10000)
+      const count = Math.floor((canvas.width * canvas.height) / 4000)
       for (let i = 0; i < count; i++) {
+        // Galaxy distributions: mostly clustered in an ellipse
+        const radius = Math.random() * Math.max(canvas.width, canvas.height)
+        const angle = Math.random() * Math.PI * 2
         particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          size: Math.random() * 1.5 + 0.4,
-          opacity: Math.random() * 0.5 + 0.1,
-          color: Math.random() > 0.6 ? '#00f5a0' : Math.random() > 0.5 ? '#00d9f5' : '#7b2fff',
+          x: canvas.width / 2 + Math.cos(angle) * radius,
+          y: canvas.height / 2 + Math.sin(angle) * radius,
+          baseX: canvas.width / 2 + Math.cos(angle) * radius,
+          baseY: canvas.height / 2 + Math.sin(angle) * radius,
+          vx: (Math.random() - 0.5) * 0.1,
+          vy: (Math.random() - 0.5) * 0.1,
+          size: Math.random() * 1.5 + 0.2, // Small stars
+          opacity: Math.random() * 0.8 + 0.1,
+          twinkleSpeed: Math.random() * 0.05 + 0.01,
+          twinkleDir: Math.random() > 0.5 ? 1 : -1,
+          color: Math.random() > 0.8 ? '#b24bf3' : Math.random() > 0.6 ? '#00d9f5' : '#ffffff',
+          angle: angle,
+          distance: radius,
+          speed: (Math.random() * 0.0005) + 0.0002
         })
       }
     }
@@ -36,53 +46,52 @@ export default function ParticleField() {
     window.addEventListener('mousemove', onMouse)
 
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      // Very faint trail effect for galaxy motion
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.2)'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      // Grid lines
-      ctx.strokeStyle = 'rgba(0,245,160,0.025)'
-      ctx.lineWidth = 0.5
-      const gs = 90
-      for (let x = 0; x < canvas.width; x += gs) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke()
-      }
-      for (let y = 0; y < canvas.height; y += gs) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke()
-      }
+      // Optional center glow for a core
+      const coreGradient = ctx.createRadialGradient(
+        canvas.width / 2, canvas.height / 2, 0,
+        canvas.width / 2, canvas.height / 2, canvas.height / 1.5
+      )
+      coreGradient.addColorStop(0, 'rgba(178, 75, 243, 0.03)')
+      coreGradient.addColorStop(1, 'rgba(0, 0, 0, 0)')
+      ctx.fillStyle = coreGradient
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       particles.forEach((p, i) => {
-        // Mouse repulsion
-        const dx = mouse.x - p.x
-        const dy = mouse.y - p.y
-        const dist = Math.sqrt(dx * dx + dy * dy)
-        if (dist < 130) {
-          p.vx -= (dx / dist) * 0.03
-          p.vy -= (dy / dist) * 0.03
-        }
+        // Rotate stars around center slowly
+        p.angle += p.speed
+        p.x = canvas.width / 2 + Math.cos(p.angle) * p.distance
+        p.y = canvas.height / 2 + Math.sin(p.angle) * p.distance
 
-        p.x += p.vx; p.y += p.vy
-        p.vx *= 0.99; p.vy *= 0.99
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1
+        // Mouse parallax shift
+        const dx = mouse.x - canvas.width / 2
+        const dy = mouse.y - canvas.height / 2
+        const parallaxX = p.x - (dx * (p.distance * 0.0002))
+        const parallaxY = p.y - (dy * (p.distance * 0.0002))
+
+        // Twinkling effect
+        p.opacity += p.twinkleSpeed * p.twinkleDir
+        if (p.opacity > 1) { p.opacity = 1; p.twinkleDir = -1 }
+        else if (p.opacity < 0.1) { p.opacity = 0.1; p.twinkleDir = 1 }
 
         ctx.globalAlpha = p.opacity
         ctx.fillStyle = p.color
+        
         ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
+        ctx.arc(parallaxX, parallaxY, p.size, 0, Math.PI * 2)
         ctx.fill()
-        ctx.globalAlpha = 1
-
-        // Connect nearby
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j]
-          const d = Math.sqrt((p.x - p2.x) ** 2 + (p.y - p2.y) ** 2)
-          if (d < 110) {
-            ctx.beginPath()
-            ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y)
-            ctx.strokeStyle = `rgba(0,245,160,${0.07 * (1 - d / 110)})`
-            ctx.lineWidth = 0.4
-            ctx.stroke()
-          }
+        
+        // Add a soft glow to larger stars
+        if (p.size > 1.2) {
+            ctx.shadowBlur = 8
+            ctx.shadowColor = p.color
+            ctx.fill()
+            ctx.shadowBlur = 0
         }
+        ctx.globalAlpha = 1
       })
 
       animId = requestAnimationFrame(draw)
@@ -103,8 +112,9 @@ export default function ParticleField() {
     <canvas
       ref={canvasRef}
       style={{
-        position: 'fixed', inset: 0, zIndex: 0,
-        opacity: 0.55, pointerEvents: 'none',
+        position: 'fixed', top: 0, left: 0, zIndex: -1,
+        opacity: 0.95, pointerEvents: 'none',
+        height: '100vh', width: '100vw'
       }}
     />
   )

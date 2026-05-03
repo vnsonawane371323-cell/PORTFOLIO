@@ -1,4 +1,4 @@
-.ach-section { position: relative; z-index: 1; }
+.ach-section { position: relative; z-index: 1; overflow: hidden; }
 .ach-inner { max-width: 1300px; margin: 0 auto; }
 
 .ach-banner {
@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   gap: 2.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3.5rem;
   overflow: hidden;
   flex-wrap: wrap;
 }
@@ -68,10 +68,177 @@
   flex-shrink: 0;
 }
 
-.ach-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
+.ach-carousel-wrapper {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4rem 0 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  overflow: hidden;
+}
+
+.carousel-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw;
+  height: 50vh;
+  background: radial-gradient(circle at center, rgba(200, 20, 20, 0.4) 0%, rgba(100, 10, 10, 0.1) 40%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.carousel-track {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 245, 160, 0.1);
+  border: 1px solid rgba(0, 245, 160, 0.3);
+  color: #00f5a0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.carousel-nav-btn:hover {
+  background: rgba(0, 245, 160, 0.25);
+  box-shadow: 0 0 15px rgba(0, 245, 160, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+  left: max(5vw, calc(50% - 400px));
+}
+
+.next-btn {
+  right: max(5vw, calc(50% - 400px));
+}
+
+.ach-movie-card {
+  position: absolute;
+  width: 520px;
+  height: 290px;
+  background: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transform-origin: center center;
+  user-select: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.ach-movie-card.active {
+  box-shadow: 0 20px 50px rgba(200, 20, 20, 0.4), inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+  cursor: default;
+}
+
+.card-rating {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 10;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.platform-icon {
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.rating-text {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1a1a2e;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #0b0b12;
+  transition: transform 0.5s ease;
+}
+
+.ach-movie-card.active .card-image img {
+  transform: scale(1);
+}
+
+.card-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #111122, #2a2a4e);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.card-content-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+  padding: 30px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.card-desc {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  word-wrap: break-word;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
 
 .ach-view-btn {
@@ -101,38 +268,24 @@
   transform: translate(2px, -2px);
 }
 
-.ach-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.2rem;
-  padding: 1.6rem;
-}
-
-.ach-icon {
-  width: 46px; height: 46px;
-  min-width: 46px;
-  background: rgba(0,245,160,0.08);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-}
-
-.ach-card h3 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 0.35rem;
-  color: #e8eaf6;
-}
-
-.ach-card p {
-  font-size: 0.8rem;
-  color: #6b7a99;
-  line-height: 1.65;
-}
-
 @media (max-width: 700px) {
-  .ach-banner { flex-direction: column; text-align: center; padding: 2rem; }
-  .banner-badge { margin-left: 0; }
+  .ach-carousel-wrapper {
+    perspective: 800px;
+    padding: 2rem 0 4rem;
+  }
+  .ach-movie-card {
+    width: 320px;
+    height: 200px;
+  }
+  .carousel-nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  .prev-btn {
+    left: 2vw;
+  }
+  .next-btn {
+    right: 2vw;
+  }
 }

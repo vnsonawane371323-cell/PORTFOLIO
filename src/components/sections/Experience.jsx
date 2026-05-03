@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { experiences } from '../../data/index.js'
+import { experiences } from '../../data/index.jsx'
 import './Experience.css'
 
 function Timeline({ items, delay = 0 }) {

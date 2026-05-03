@@ -1,48 +1,59 @@
 import { useEffect, useRef, useState } from 'react'
+import { 
+  FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaFigma, 
+  FaPython, FaAws 
+} from 'react-icons/fa'
+import { TbBrandNextjs, TbBrain, TbSearch, TbBrandThreejs, TbApi } from 'react-icons/tb'
+import { BiBrain, BiMessageSquareDetail } from 'react-icons/bi'
+import { VscRobot } from 'react-icons/vsc'
+import { SiCanva, SiCplusplus, SiTypescript } from 'react-icons/si'
+import { MdDesignServices, MdOutlineDesignServices } from 'react-icons/md'
+import { BsPhone } from 'react-icons/bs'
+import { VscGitPullRequest } from 'react-icons/vsc'
 import './Skills.css'
 
 const row1Skills = [
-  { icon: "⚡", name: "HTML", cat: "frontend" },
-  { icon: "🎨", name: "CSS", cat: "frontend" },
-  { icon: "🌐", name: "JavaScript", cat: "frontend" },
-  { icon: "⚛️", name: "React.js", cat: "frontend" },
-  { icon: "▲", name: "Next.js", cat: "frontend" },
-  { icon: "🔷", name: "TypeScript", cat: "frontend" },
-  { icon: "🐙", name: "Git", cat: "frontend" },
-  { icon: "💻", name: "GitHub", cat: "frontend" }
+  { icon: <FaHtml5 color="#E34F26" />, name: "HTML", cat: "frontend" },
+  { icon: <FaCss3Alt color="#1572B6" />, name: "CSS", cat: "frontend" },
+  { icon: <FaJs color="#F7DF1E" />, name: "JavaScript", cat: "frontend" },
+  { icon: <FaReact color="#61DAFB" />, name: "React.js", cat: "frontend" },
+  { icon: <TbBrandNextjs color="#ffffff" />, name: "Next.js", cat: "frontend" },
+  { icon: <SiTypescript color="#3178C6" />, name: "TypeScript", cat: "frontend" },
+  { icon: <FaGitAlt color="#F05032" />, name: "Git", cat: "frontend" },
+  { icon: <FaGithub color="#ffffff" />, name: "GitHub", cat: "frontend" }
 ]
 
 const row2Skills = [
-  { icon: "🎯", name: "Figma", cat: "design" },
-  { icon: "🖌️", name: "Canva", cat: "design" },
-  { icon: "🧠", name: "Design Thinking", cat: "design" },
-  { icon: "📐", name: "UI/UX", cat: "design" },
-  { icon: "🔲", name: "Prototyping", cat: "design" },
-  { icon: "✏️", name: "Wireframing", cat: "design" },
-  { icon: "📱", name: "Responsive Design", cat: "design" },
-  { icon: "🎭", name: "User Research", cat: "design" }
+  { icon: <FaFigma color="#F24E1E" />, name: "Figma", cat: "design" },
+  { icon: <SiCanva color="#00C4CC" />, name: "Canva", cat: "design" },
+  { icon: <TbBrain color="#FF66A1" />, name: "Design Thinking", cat: "design" },
+  { icon: <MdDesignServices color="#E1218F" />, name: "UI/UX", cat: "design" },
+  { icon: <BiBrain color="#00F5A0" />, name: "Prototyping", cat: "design" },
+  { icon: <MdOutlineDesignServices color="#FFA500" />, name: "Wireframing", cat: "design" },
+  { icon: <BsPhone color="#A020F0" />, name: "Responsive Design", cat: "design" },
+  { icon: <TbSearch color="#00D9F5" />, name: "User Research", cat: "design" }
 ]
 
 const row3Skills = [
-  { icon: "☁️", name: "AWS", cat: "cloud" },
-  { icon: "🐍", name: "Python", cat: "cloud" },
-  { icon: "⚙️", name: "C++", cat: "cloud" },
-  { icon: "🟢", name: "Node.js", cat: "cloud" },
-  { icon: "🔗", name: "REST API", cat: "cloud" },
-  { icon: "🤖", name: "Claude AI", cat: "cloud" },
-  { icon: "💬", name: "Prompt Engineering", cat: "cloud" },
-  { icon: "🧮", name: "DSA", cat: "cloud" }
+  { icon: <FaAws color="#FF9900" />, name: "AWS", cat: "cloud" },
+  { icon: <FaPython color="#3776AB" />, name: "Python", cat: "cloud" },
+  { icon: <SiCplusplus color="#00599C" />, name: "C++", cat: "cloud" },
+  { icon: <FaNodeJs color="#339933" />, name: "Node.js", cat: "cloud" },
+  { icon: <TbApi color="#ffffff" />, name: "REST API", cat: "cloud" },
+  { icon: <VscRobot color="#5C2D91" />, name: "Claude AI", cat: "cloud" },
+  { icon: <BiMessageSquareDetail color="#e8eaf6" />, name: "Prompt Engineering", cat: "cloud" },
+  { icon: <VscGitPullRequest color="#00f5a0" />, name: "DSA", cat: "cloud" }
 ]
 
 const planetsData = [
-  { name: "React.js", icon: "⚛️", color: "#00f5a0", orbit: 155, duration: 8, startAngle: 0 },
-  { name: "Next.js", icon: "▲", color: "#ffffff", orbit: 155, duration: 8, startAngle: 180 },
-  { name: "Figma", icon: "🎯", color: "#00d9f5", orbit: 210, duration: 12, startAngle: 60 },
-  { name: "JavaScript", icon: "🌐", color: "#f7df1e", orbit: 210, duration: 12, startAngle: 240 },
-  { name: "AWS", icon: "☁️", color: "#ff9900", orbit: 265, duration: 16, startAngle: 120 },
-  { name: "Python", icon: "🐍", color: "#7b2fff", orbit: 265, duration: 16, startAngle: 300 },
-  { name: "CSS", icon: "🎨", color: "#00d9f5", orbit: 155, duration: 20, startAngle: 90 },
-  { name: "Design Thinking", icon: "🧠", color: "#c4a8ff", orbit: 210, duration: 20, startAngle: 270 }
+  { name: "React.js", icon: <FaReact />, color: "#00f5a0", orbit: 155, duration: 8, startAngle: 0 },
+  { name: "Next.js", icon: <TbBrandNextjs />, color: "#ffffff", orbit: 155, duration: 8, startAngle: 180 },
+  { name: "Figma", icon: <FaFigma />, color: "#00d9f5", orbit: 210, duration: 12, startAngle: 60 },
+  { name: "JavaScript", icon: <FaJs />, color: "#f7df1e", orbit: 210, duration: 12, startAngle: 240 },
+  { name: "AWS", icon: <FaAws />, color: "#ff9900", orbit: 265, duration: 16, startAngle: 120 },
+  { name: "Python", icon: <FaPython />, color: "#7b2fff", orbit: 265, duration: 16, startAngle: 300 },
+  { name: "CSS", icon: <FaCss3Alt />, color: "#00d9f5", orbit: 155, duration: 20, startAngle: 90 },
+  { name: "Design Thinking", icon: <TbBrain />, color: "#c4a8ff", orbit: 210, duration: 20, startAngle: 270 }
 ]
 
 function SkillChip({ icon, name, cat }) {

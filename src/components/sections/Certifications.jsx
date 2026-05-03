@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { certifications } from '../../data/index.js'
+import { certifications } from '../../data/index.jsx'
 import './Certifications.css'
 
 function TiltCard({ cert, delay }) {

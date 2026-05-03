@@ -20,8 +20,8 @@ export default function useStoryProgress() {
   
   return {
     progress,
-    nashikOpacity: smoothStep(0.38, 0.45, progress) - smoothStep(0.52, 0.58, progress),
-    projectsOpacity: smoothStep(0.55, 0.62, progress) - smoothStep(0.76, 0.82, progress),
-    ctaOpacity: smoothStep(0.80, 0.88, progress),
+    nashikOpacity: smoothStep(0.01, 0.04, progress) - smoothStep(0.06, 0.09, progress),
+    projectsOpacity: smoothStep(0.07, 0.10, progress) - smoothStep(0.12, 0.14, progress),
+    ctaOpacity: smoothStep(0.12, 0.14, progress),
   }
 }

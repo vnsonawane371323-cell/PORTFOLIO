@@ -1,3 +1,4 @@
+import { FaReact, FaFigma, FaAws, FaTrophy } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import useMagnet from '../../hooks/useMagnet'
@@ -72,9 +73,9 @@ export default function Hero() {
             <div className="photo-overlay" />
           </div>
 
-          <div className="badge-float bf1">⚡ React.js</div>
-          <div className="badge-float bf2">🎨 Figma</div>
-          <div className="badge-float bf3">☁️ AWS</div>
+          <div className="badge-float bf1"><FaReact style={{ color: '#61dafb', marginRight: '6px' }} /> React.js</div>
+          <div className="badge-float bf2"><FaFigma style={{ color: '#f24e1e', marginRight: '6px' }} /> Figma</div>
+          <div className="badge-float bf3"><FaAws style={{ color: '#ff9900', marginRight: '6px' }} /> AWS</div>
         </motion.div>
 
         {/* ── HERO TEXT ── */}
@@ -124,7 +125,7 @@ export default function Hero() {
 
           <motion.div className="hero-stats" {...fadeUp(1.1)}>
             {[
-              { num: '🏆', label: 'National Runner-Up', sub: 'Hacksagon 2026' },
+              { num: <FaTrophy style={{ color: '#ffd700' }}/>, label: 'National Runner-Up', sub: 'Hacksagon 2026' },
               { num: '4+', label: 'Live Projects' },
               { num: '17', label: 'Master Student', sub: 'ISTE 2025' },
               { num: '3rd', label: 'Year · KK Wagh' },

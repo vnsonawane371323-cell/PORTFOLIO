@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function ScrollStory() {
   return (
-    <div className="story-wrapper" style={{ height: '500vh', position: 'relative' }}>
+    <div className="story-wrapper" style={{ height: '150vh', position: 'relative' }}>
       <div className="story-pin" style={{ position: 'sticky', top: 0, height: '100vh', width: '100vw', overflow: 'hidden' }}>
         <CinemaEngine />
         <NashikOverlay />

@@ -36,13 +36,7 @@ export default function Projects() {
                 <div 
                   className="proj-bg-image" 
                   style={{ 
-                    backgroundImage: `url(${p.image})`, 
-                    backgroundSize: 'cover', 
-                    backgroundPosition: 'center', 
-                    position: 'absolute', 
-                    inset: 0, 
-                    opacity: 0.9,
-                    borderRadius: 'var(--radius)' 
+                    backgroundImage: `url(${p.image})`,
                   }} 
                 />
               ) : (

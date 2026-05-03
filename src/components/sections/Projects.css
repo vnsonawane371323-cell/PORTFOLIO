@@ -54,6 +54,16 @@
 
 .proj-card:hover .proj-glow { opacity: 0.2; }
 
+.proj-bg-image {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.95;
+  border-radius: var(--radius);
+}
+
 .proj-icon {
   width: 90px;
   height: 90px;

@@ -1,4 +1,7 @@
-import lifeLinkImg from '../assets/LifeLink.svg';
+import lifeLinkImg from '../assets/lifelink.png';
+import swasthyamImg from '../assets/swasthyam.jpg';
+import portfolioImg from '../assets/portfolio.png';
+import yatraveerImg from '../assets/yatraveer.png';
 import reactCertImg from '../assets/react-certificate.jpeg';
 import img1 from '../assets/image1.png';
 import img2 from '../assets/image2.png';
@@ -25,6 +28,7 @@ export const projects = [
     color: '#00f5a0',
     icon: <FaHeartbeat />,
     iconBg: 'linear-gradient(135deg,rgba(0,245,160,0.15),rgba(0,245,160,0.05))',
+    image: swasthyamImg,
     badge: '© Copyrighted Formula',
     badgeColor: 'var(--accent)',
     link: 'https://github.com/vnsonawane371323-cell/Swasthyam',
@@ -40,6 +44,7 @@ export const projects = [
     color: '#ff9900',
     icon: <FaShieldAlt />,
     iconBg: 'linear-gradient(135deg,rgba(255,153,0,0.15),rgba(255,153,0,0.05))',
+    image: yatraveerImg,
     badge: 'Mobile App',
     badgeColor: '#ffd699',
     link: 'https://github.com/vnsonawane371323-cell/YATRAVEER',
@@ -71,6 +76,7 @@ export const projects = [
     color: '#7b2fff',
     icon: <FaRocket />,
     iconBg: 'linear-gradient(135deg,rgba(123,47,255,0.15),rgba(123,47,255,0.05))',
+    image: portfolioImg,
     badge: "You're here",
     badgeColor: '#c4a8ff',
     link: 'https://vedant-portfolio-ef2k.vercel.app',

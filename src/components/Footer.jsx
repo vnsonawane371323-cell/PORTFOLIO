@@ -6,6 +6,11 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <p className="footer-copy">© 2026 Vedant Sonawane — Built with React, Framer Motion &amp; passion</p>
+        <div className="footer-links">
+          <a href="/about-vedant-sonawane">About</a>
+          <a href="/projects">Projects</a>
+          <a href="/blog">Blog</a>
+        </div>
         <div className="footer-badge">
           <FaTrophy style={{ color: '#ffd700', marginRight: '6px' }} />
           National Runner-Up · Hacksagon 2026

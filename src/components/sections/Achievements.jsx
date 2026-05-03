@@ -141,7 +141,7 @@ export default function Achievements() {
               >
                 <div className="card-image">
                   {a.image ? (
-                    <img src={a.image} alt="Achievement" />
+                    <img src={a.image} alt={`${a.title} achievement`} />
                   ) : (
                     <div className="card-placeholder" />
                   )}

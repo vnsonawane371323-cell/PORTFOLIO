@@ -7,7 +7,7 @@ const socials = [
   { icon: 'in', label: 'LinkedIn', href: 'https://www.linkedin.com/in/vedant-sonawane-57012a337?utm_source=share_via&utm_content=profile&utm_medium=member_android', sub: 'linkedin.com/in/vedant-sonawane' },
   { icon: '⌥', label: 'GitHub', href: 'https://github.com/vnsonawane371323-cell', sub: 'https://github.com/vnsonawane371323-cell' },
   { icon: '@', label: 'Email', href: 'mailto:vedantsonawane2244@gmail.com', sub: 'vedantsonawane2244@gmail.com' },
-  { icon: '↗', label: 'Portfolio', href: 'vedant-sonawane-portfolio.in', sub: 'vedant-sonawane-portfolio.in' },
+  { icon: '↗', label: 'Portfolio', href: 'https://vedant-sonawane-portfolio.in', sub: 'vedant-sonawane-portfolio.in' },
 ]
 
 export default function Contact() {

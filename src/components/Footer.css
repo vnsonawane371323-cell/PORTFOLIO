@@ -17,6 +17,24 @@
 
 .footer-copy { color: #6b7a99; font-size: 0.8rem; }
 
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #8b92a5;
+  font-size: 0.78rem;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-links a:hover {
+  color: #00f5a0;
+}
+
 .footer-badge {
   font-size: 0.78rem;
   color: #00f5a0;

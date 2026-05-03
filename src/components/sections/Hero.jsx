@@ -4,10 +4,9 @@ import { motion } from 'framer-motion'
 import useMagnet from '../../hooks/useMagnet'
 import './Hero.css'
 
-// ADD YOUR REAL PHOTO HERE — replace with your actual image path
-import heroPhoto from '../../assets/photo.svg'
+import heroPhoto from '../../assets/vedant-sonawane-profile.svg'
 
-const roles = ['Frontend Developer', 'Design Thinker', 'React.js Expert', 'Problem Solver']
+const roles = ['Software Developer', 'AI Enthusiast', 'Full Stack Engineer', 'React.js Expert']
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
@@ -58,16 +57,21 @@ export default function Hero() {
             {!photoError ? (
               <img
                 src={heroPhoto}
-                alt="Vedant Sonawane"
+                alt="Vedant Sonawane Software Developer"
                 onError={() => setPhotoError(true)}
                 className="photo-img"
+                width="360"
+                height="450"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
               />
             ) : (
               <div className="photo-fallback">
                 <div className="photo-initials">VS</div>
                 <p className="photo-name-text">Vedant Sonawane</p>
                 <p className="photo-role-text">Frontend Developer</p>
-                <p className="photo-hint">Replace src/assets/photo.svg with your photo</p>
+                <p className="photo-hint">Add src/assets/vedant-sonawane-profile.svg</p>
               </div>
             )}
             <div className="photo-overlay" />
@@ -85,7 +89,12 @@ export default function Hero() {
             KK Wagh Institute · CS & Design Engineering · 3rd Year
           </motion.div>
 
+          <motion.p className="hero-kicker" {...fadeUp(0.35)}>
+            Official Portfolio of Vedant Sonawane
+          </motion.p>
+
           <motion.h1 className="hero-headline" {...fadeUp(0.5)}>
+            <span className="sr-only">Vedant Sonawane</span>
             <span className="h-line1">VEDANT</span>
             <span className="h-line2 grad-text">SONAWANE</span>
           </motion.h1>
@@ -98,6 +107,7 @@ export default function Hero() {
           <motion.p className="hero-desc" {...fadeUp(0.85)}>
             Crafting web experiences where logic meets aesthetics —
             building products that are technically sound and beautifully designed.
+            Software Developer, AI Enthusiast, and Full Stack Engineer focused on modern web systems.
           </motion.p>
 
           <motion.div className="hero-btns" {...fadeUp(1)}>

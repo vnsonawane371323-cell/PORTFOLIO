@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import './About.css'
-import cvFile from '../../assets/Vedant Sonawane.pdf'
+import cvFile from '../../assets/Vedant_Sonawane_Resume.pdf'
 
 const tags = ['React.js','Next.js','JavaScript','TypeScript','AWS','Figma','Canva','Design Thinking','CSS','HTML','Python','C++','Git','GitHub']
 
@@ -24,7 +24,7 @@ export default function About() {
           <p className="section-sub">
             A Computer Science &amp; Design Engineering student who thinks like a designer and builds like a developer.
           </p>
-          <a href={cvFile} className="btn-outline" download="Vedant_Sonawane_CV.pdf">Download CV ↓</a>
+          <a href={cvFile} className="btn-outline" download="Vedant_Sonawane_Resume.pdf">Download CV ↓</a>
         </motion.div>
 
         <motion.div
